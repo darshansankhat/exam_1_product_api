@@ -44,80 +44,83 @@ class _Home_screenState extends State<Home_screen> {
                 ))
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Container(
-                height: 7.h,
-                width: 100.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Find Shoes",
-                        suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.search),
-                        )),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                Container(
+                  height: 7.h,
+                  width: 100.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Find Shoes",
+                          suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.search),
+                          )),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              SizedBox(
-                height: 71.h,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisExtent: 30.h),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 30.h,
-                      width: 40.w,
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(color: Colors.black38, blurRadius: 2)
-                          ]),
-                      child: Column(
-                        children: [
-                          //price
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Price",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.black38,
-                                    size: 30,
-                                  ))
-                            ],
-                          ),
-                          //image
-                          Image.network(
-                              "${providerT!.s1.data![index].productId}"),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: providerT!.s1.data!.length,
+                SizedBox(
+                  height: 2.h,
                 ),
-              ),
-            ],
+                providerT!.s1.data!.isEmpty?CircularProgressIndicator():
+                SizedBox(
+                  height: 71.h,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisExtent: 30.h),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 30.h,
+                        width: 40.w,
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(color: Colors.black38, blurRadius: 2)
+                            ]),
+                        child: Column(
+                          children: [
+                            //price
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Price",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.black38,
+                                      size: 30,
+                                    ))
+                              ],
+                            ),
+                            //image
+                            Text(
+                                "${providerT!.s1.data![index].productId}"),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: providerT!.s1.data!.length,
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }
